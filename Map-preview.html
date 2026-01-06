@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Redirecting to Map...</title>
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  video {
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+</style>
+</head>
+<body>
+
+<video id="introVideo" autoplay muted playsinline>
+  <source src="images/videomap.MP4" type="video/mp4">
+</video>
+
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const lat = params.get("lat");
+  const lng = params.get("lng");
+
+  const mapURL = `https://www.google.com/maps/place/Warehouse+Royaltec+%E0%B8%84%E0%B8%A5%E0%B8%B1%E0%B8%87%E0%B8%AA%E0%B8%B4%E0%B8%99%E0%B8%84%E0%B9%89%E0%B8%B2%E0%B8%A3%E0%B8%AD%E0%B8%A2%E0%B8%B1%E0%B8%A5%E0%B9%80%E0%B8%97%E0%B8%84/@13.7613955,100.6088493,17.75z/data=!4m12!1m5!3m4!2zMTPCsDQ2JzE5LjAiTiAxMDDCsDM2JzI5LjYiRQ!8m2!3d13.7719444!4d100.6082222!3m5!1s0x30e29f51aab3b467:0x5dd49cde4960255f!8m2!3d13.7606548!4d100.608836!16s%2Fg%2F11tdvjlb8r?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D`;
+
+  const video = document.getElementById("introVideo");
+
+  // เมื่อวิดีโอจบ → ไป Google Maps
+  video.addEventListener("ended", () => {
+    window.location.href = mapURL;
+  });
+
+  // fallback กันวิดีโอไม่เล่น (มือถือบางรุ่น)
+  setTimeout(() => {
+    window.location.href = mapURL;
+  }, 20000); 
+</script>
+
+</body>
+</html>
